@@ -1,0 +1,20 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <VersionNumber>0.0.1</VersionNumber> <!--x-release-please-version -->
+    <VersionPrefix>$(VersionNumber)</VersionPrefix>
+    <AssemblyVersion>$(VersionNumber)</AssemblyVersion>
+    <FileVersion>$(VersionNumber)</FileVersion>
+    <Description>Unleash provider for .NET</Description>
+    <Authors>Olivier Beaudet</Authors>
+    <GenerateDocumentationFile>true</GenerateDocumentationFile>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <PackageReference Include="OpenFeature" Version="$(OpenFeatureVersion)" />
+    <PackageReference Include="Unleash.Client" Version="5.6.0" />
+  </ItemGroup>
+  <PropertyGroup>
+    <OpenFeatureVersion>[2.10,2.99999]</OpenFeatureVersion>
+  </PropertyGroup>
+</Project>
