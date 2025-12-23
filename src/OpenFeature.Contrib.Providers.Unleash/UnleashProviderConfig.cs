@@ -9,8 +9,15 @@ namespace OpenFeature.Contrib.Providers.Unleash;
 /// </summary>
 public class UnleashProviderConfig
 {
-    private readonly UnleashSettings _settings;
-    private readonly IUnleashClientFactory _factory;
+    /// <summary>
+    ///
+    /// </summary>
+    public UnleashSettings UnleashSettings { get; }
+
+    /// <summary>
+    ///
+    /// </summary>
+    public IUnleashClientFactory UnleashFactory { get; }
 
     /// <summary>
     /// Constructor
@@ -29,17 +36,7 @@ public class UnleashProviderConfig
     /// <exception cref="ArgumentNullException"></exception>
     public UnleashProviderConfig(UnleashSettings settings, IUnleashClientFactory factory)
     {
-        _settings = settings ?? throw new System.ArgumentNullException(nameof(settings));
-        _factory = factory ?? throw new System.ArgumentNullException(nameof(factory));
+        UnleashSettings = settings ?? throw new System.ArgumentNullException(nameof(settings));
+        UnleashFactory = factory ?? throw new System.ArgumentNullException(nameof(factory));
     }
-
-    /// <summary>
-    ///
-    /// </summary>
-    public UnleashSettings UnleashSettings => _settings;
-
-    /// <summary>
-    ///
-    /// </summary>
-    public IUnleashClientFactory UnleashFactory => _factory;
 }

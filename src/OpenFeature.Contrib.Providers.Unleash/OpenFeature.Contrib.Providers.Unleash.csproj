@@ -11,10 +11,17 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <!-- make the internal methods visble to our test project -->
+    <AssemblyAttribute Include="System.Runtime.CompilerServices.InternalsVisibleTo">
+      <_Parameter1>$(MSBuildProjectName).Test</_Parameter1>
+    </AssemblyAttribute>
+  </ItemGroup>
+  <ItemGroup>
     <PackageReference Include="OpenFeature" Version="$(OpenFeatureVersion)" />
-    <PackageReference Include="Unleash.Client" Version="5.6.0" />
+    <PackageReference Include="Unleash.Client" Version="$(UnleashVersion)" />
   </ItemGroup>
   <PropertyGroup>
     <OpenFeatureVersion>[2.10,2.99999]</OpenFeatureVersion>
+    <UnleashVersion>[5.6,5.99999]</UnleashVersion>
   </PropertyGroup>
 </Project>

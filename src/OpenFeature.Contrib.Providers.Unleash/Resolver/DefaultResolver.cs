@@ -17,18 +17,14 @@ internal class DefaultResolver : IResolver
         _config = config;
     }
 
-    private void IsInitialized()
+    public async Task Init()
     {
         if (_isInitialized)
         {
             throw new InvalidOperationException("Unleash Provider already initialized");
         }
-    }
-
-    public async Task Init()
-    {
         _isInitialized = true;
-        _unleash = await _config.UnleashFactory.CreateClientAsync(_config.UnleashSettings, synchronousInitialization: true);
+        _unleash = await _config.UnleashFactory.CreateClientAsync(_config.UnleashSettings, synchronousInitialization: true).ConfigureAwait(false);
     }
 
     public Task Shutdown()
@@ -51,7 +47,7 @@ internal class DefaultResolver : IResolver
 
     public async Task<ResolutionDetails<string>> ResolveStringValueAsync(string flagKey, string defaultValue, EvaluationContext context = null)
     {
-        var valueResult = await ResolveStructureValueAsync(flagKey, new Value(defaultValue), context);
+        var valueResult = await ResolveStructureValueAsync(flagKey, new Value(defaultValue), context).ConfigureAwait(false);
 
         return new ResolutionDetails<string>(
             flagKey,
@@ -66,7 +62,7 @@ internal class DefaultResolver : IResolver
 
     public async Task<ResolutionDetails<int>> ResolveIntegerValueAsync(string flagKey, int defaultValue, EvaluationContext context = null)
     {
-        var valueResult = await ResolveStructureValueAsync(flagKey, new Value(defaultValue), context);
+        var valueResult = await ResolveStructureValueAsync(flagKey, new Value(defaultValue), context).ConfigureAwait(false);
 
         var value = GetIntegerValue(valueResult, defaultValue);
 
@@ -91,7 +87,7 @@ internal class DefaultResolver : IResolver
 
     public async Task<ResolutionDetails<double>> ResolveDoubleValueAsync(string flagKey, double defaultValue, EvaluationContext context = null)
     {
-        var valueResult = await ResolveStructureValueAsync(flagKey, new Value(defaultValue), context);
+        var valueResult = await ResolveStructureValueAsync(flagKey, new Value(defaultValue), context).ConfigureAwait(false);
 
         var value = GetDoubleValue(valueResult, defaultValue);
 
@@ -148,6 +144,6 @@ internal class DefaultResolver : IResolver
             value ?? defaultValue,
             variant: variantName,
             flagMetadata: new ImmutableMetadata(flagMetadata)
-        ));
+        )).ConfigureAwait(false);
     }
 }

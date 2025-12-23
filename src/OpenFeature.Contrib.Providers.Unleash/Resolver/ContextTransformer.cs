@@ -8,7 +8,7 @@ namespace OpenFeature.Contrib.Providers.Unleash.Resolver;
 /// <summary>
 /// Transformer from OpenFeature context to Unleash context.
 /// </summary>
-public static class ContextTransformer
+internal static class ContextTransformer
 {
     private const string ContextAppName = "appName";
     private const string ContextUserId = "userId";
@@ -22,13 +22,13 @@ public static class ContextTransformer
     /// </summary>
     /// <param name="ctx">EvaluationContext</param>
     /// <returns>Unleash UnleashContext</returns>
-    public static UnleashContext Transform(EvaluationContext ctx)
+    internal static UnleashContext Transform(EvaluationContext ctx)
     {
-        string? appName = null;
-        string? environment = null;
-        string? userId = null;
-        string? sessionId = null;
-        string? remoteAddress = null;
+        string appName = null;
+        string environment = null;
+        string userId = null;
+        string sessionId = null;
+        string remoteAddress = null;
         DateTime? currentTime = null;
         var properties = new Dictionary<string, string>();
 
